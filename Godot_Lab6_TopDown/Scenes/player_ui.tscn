@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bshkyyfn6knhd"]
+[gd_scene load_steps=5 format=3 uid="uid://bshkyyfn6knhd"]
 
 [ext_resource type="Script" path="res://Scripts/Entity/player_ui.gd" id="1_7nceg"]
 [ext_resource type="Theme" uid="uid://o2i6ofsjprkk" path="res://Themes/ui.theme" id="1_wbt8q"]
 [ext_resource type="Texture2D" uid="uid://crejfhgcj8jga" path="res://Assets/key.png" id="3_shr7w"]
+[ext_resource type="AudioStream" uid="uid://4mevnkgs0ucv" path="res://Assets/Sound/WolfSimple.mp3" id="4_kuc64"]
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_7nceg")
+
+[node name="GoalLabel" type="Label" parent="."]
+offset_left = 227.0
+offset_right = 593.0
+offset_bottom = 36.0
+text = "GOAL: FIND THE \"KEY\" TO OPEN ESCAPE DOOR!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -90,5 +99,9 @@ text = "You have extracted :)"
 [node name="Play Again Button" type="Button" parent="GameOverContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Play AGAIN"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kuc64")
+autoplay = true
 
 [connection signal="pressed" from="GameOverContainer/Panel/VBoxContainer/Play Again Button" to="." method="_on_play_again_button_pressed"]

@@ -8,18 +8,22 @@ const CHANCE_TO_STOP_CHASING = .5
 @onready var sprite_2d = $"../../Sprite2D" as Sprite2D
 @onready var random_target_chase_update_timer = $RandomTargetChaseUpdateTimer as RandomTimer
 @onready var sounds = $"../../Sounds"
+@onready var ap = $"../../AnimationPlayer"
 
-var texture_chase = preload("res://Assets/zombie_walking.png")
-var texture_default = preload("res://Assets/zombie_standing.png")
+#var texture_chase = preload("res://Assets/zombie_walking.png")
+#var texture_default = preload("res://Assets/zombie_standing.png")
 
 func enter(msg = {}) -> void:
+	if owner == null:
+		return
 	if owner.is_queued_for_deletion():
-		return 
-		
+		return
+	
 	var random_stream_player = sounds.get_children().pick_random()
 	random_stream_player.play()
 		
-	sprite_2d.texture = texture_chase
+	#sprite_2d.texture = texture_chase
+	ap.play("Zombie_run")
 	owner.current_speed = owner.chasing_speed
 	start_chasing()
 	
@@ -49,7 +53,8 @@ func stop_chasing():
 
 func exit(): 
 	random_target_chase_update_timer.stop()
-	sprite_2d.texture = texture_default
+	#sprite_2d.texture = texture_default
+	ap.play("Zombie_idle")
 	owner.current_speed = owner.wandering_speed
 
 func _on_random_target_chase_update_timer_timeout():

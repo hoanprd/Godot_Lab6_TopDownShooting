@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmsnvoi6jecmu"]
+[gd_scene load_steps=22 format=3 uid="uid://dmsnvoi6jecmu"]
 
-[ext_resource type="Texture2D" uid="uid://57u6c4shgvir" path="res://Assets/zombie_standing.png" id="1_o0ssw"]
 [ext_resource type="Script" path="res://Scripts/Entity/zombie_enemy.gd" id="1_y1cks"]
 [ext_resource type="Script" path="res://Scripts/Entity/zombie_life_bar.gd" id="3_dbmbk"]
 [ext_resource type="Script" path="res://Scripts/Entity/state_machine.gd" id="3_eh4li"]
 [ext_resource type="Material" uid="uid://du5ubbne2733l" path="res://Materials/light_only.material" id="4_0gn2x"]
 [ext_resource type="Script" path="res://Scripts/Map/Idle.gd" id="4_u06qi"]
+[ext_resource type="Texture2D" uid="uid://bxtlmdwhfhx8r" path="res://Assets/Enemy/Zombie_idle.png" id="5_he5r8"]
 [ext_resource type="Script" path="res://Scripts/Entity/random_timer.gd" id="5_ii8wk"]
+[ext_resource type="Texture2D" uid="uid://b8iy2j2fmxu0h" path="res://Assets/Enemy/Zombie_run.png" id="5_q1gr1"]
 [ext_resource type="Script" path="res://Scripts/Map/Wandering.gd" id="6_gs0gs"]
 [ext_resource type="Script" path="res://Scripts/Map/Chase.gd" id="7_prg2b"]
 [ext_resource type="Script" path="res://Scripts/Map/Attack.gd" id="8_kjs45"]
@@ -19,6 +20,134 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cm6h6"]
 radius = 11.0
 height = 40.0
+
+[sub_resource type="Animation" id="Animation_b0221"]
+resource_name = "Zombie_idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_he5r8")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_ey5mi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_he5r8")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_gxlqq"]
+resource_name = "Zombie_run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_q1gr1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nqxy4"]
+_data = {
+"RESET": SubResource("Animation_ey5mi"),
+"Zombie_idle": SubResource("Animation_b0221"),
+"Zombie_run": SubResource("Animation_gxlqq")
+}
 
 [node name="ZombieEnemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -38,7 +167,8 @@ script = ExtResource("3_dbmbk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("4_0gn2x")
-texture = ExtResource("1_o0ssw")
+texture = ExtResource("5_he5r8")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -109,6 +239,12 @@ stream = ExtResource("13_ay1dp")
 
 [node name="ZombieAttackSounds3" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("14_cr6j3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nqxy4")
+}
+autoplay = "Zombie_idle"
 
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Idle/RotationTimer" to="StateMachine/Idle" method="_on_rotation_timer_timeout"]

@@ -2,6 +2,7 @@ extends CanvasLayer
 
 class_name PlayerUI
 
+@onready var goal_label = $GoalLabel
 @onready var life_bar = $MarginContainer/LifeBar
 @onready var ammo_container = %AmmoContainer
 @onready var ammo_left_label = %AmmoLeftLabel
@@ -47,6 +48,8 @@ func gun_reloaded(ammo_in_magazine: int, total_ammo_left: int):
 
 func on_key_pickup():
 	key_icon.show()
+	goal_label.text = "Goal: Find the escape door!"
+	
 	
 func update_extract_timer(time_left: float):
 	if extract_counter_label.hidden:

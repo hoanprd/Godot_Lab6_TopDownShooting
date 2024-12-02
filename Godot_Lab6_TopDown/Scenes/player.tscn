@@ -1,19 +1,57 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjxyci4gifbyb"]
+[gd_scene load_steps=11 format=3 uid="uid://bjxyci4gifbyb"]
 
-[ext_resource type="Texture2D" uid="uid://d0iq57did5p4r" path="res://Assets/Scharacter.png" id="1_0ic5a"]
 [ext_resource type="Script" path="res://Scripts/Entity/player.gd" id="1_36n2m"]
+[ext_resource type="Texture2D" uid="uid://chq0cg8eofwd4" path="res://Assets/Player/Player_idle.png" id="2_5rah5"]
 [ext_resource type="Script" path="res://Scripts/Entity/health_system.gd" id="3_k0xct"]
 [ext_resource type="Script" path="res://Scripts/Entity/shooting_system.gd" id="4_881yo"]
 [ext_resource type="AudioStream" uid="uid://2wbfu8g7ck1" path="res://Assets/Sound/pistol-shot.mp3" id="5_73kxt"]
 [ext_resource type="AudioStream" uid="uid://0fx7p41ggu1h" path="res://Assets/Sound/pistol-reload.mp3" id="6_elxad"]
 [ext_resource type="Texture2D" uid="uid://cdviujlby0sks" path="res://Assets/visibility_mask_1.png" id="7_4bntq"]
 
+[sub_resource type="Animation" id="Animation_gl0r3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_l1jlk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mx8ob"]
+_data = {
+"RESET": SubResource("Animation_l1jlk"),
+"idle": SubResource("Animation_gl0r3")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 64
 script = ExtResource("1_36n2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0ic5a")
+texture = ExtResource("2_5rah5")
+hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -44,3 +82,7 @@ texture = ExtResource("7_4bntq")
 texture_scale = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mx8ob")
+}
+autoplay = "idle"

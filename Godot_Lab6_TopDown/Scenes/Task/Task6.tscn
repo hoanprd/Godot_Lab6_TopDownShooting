@@ -1,15 +1,15 @@
-[gd_scene load_steps=38 format=4 uid="uid://5yc2a4raibrj"]
+[gd_scene load_steps=38 format=4 uid="uid://otjf3mtcswa6"]
 
-[ext_resource type="Texture2D" uid="uid://c4ypmbh3x8n3d" path="res://Assets/spritesheet_tiles.png" id="1_fk5wr"]
-[ext_resource type="PackedScene" uid="uid://dmsnvoi6jecmu" path="res://Scenes/zombie_enemy.tscn" id="2_dla2r"]
-[ext_resource type="PackedScene" uid="uid://bw58hbvgrukc" path="res://Scenes/ammo_pickup.tscn" id="3_8kfts"]
-[ext_resource type="PackedScene" uid="uid://bshkyyfn6knhd" path="res://Scenes/player_ui.tscn" id="4_nhquy"]
-[ext_resource type="PackedScene" uid="uid://bjxyci4gifbyb" path="res://Scenes/player.tscn" id="5_qh8j4"]
-[ext_resource type="PackedScene" uid="uid://c36uj83ykhemk" path="res://Scenes/key_pickup.tscn" id="6_hg144"]
-[ext_resource type="PackedScene" uid="uid://c164b6qb8ruft" path="res://Scenes/health_pickup.tscn" id="7_gx48r"]
-[ext_resource type="PackedScene" uid="uid://dw2uifivxvwk3" path="res://Scenes/extract.tscn" id="8_nykts"]
-[ext_resource type="AudioStream" uid="uid://vhniq3lw33e8" path="res://Assets/Sound/pickup.mp3" id="9_o5cxy"]
-[ext_resource type="Script" path="res://Scripts/Entity/spawner_manager.gd" id="10_5ylud"]
+[ext_resource type="Texture2D" uid="uid://c4ypmbh3x8n3d" path="res://Assets/spritesheet_tiles.png" id="1_qqs4y"]
+[ext_resource type="PackedScene" uid="uid://dmsnvoi6jecmu" path="res://Scenes/zombie_enemy.tscn" id="2_fvohh"]
+[ext_resource type="PackedScene" uid="uid://bw58hbvgrukc" path="res://Scenes/ammo_pickup.tscn" id="3_rim48"]
+[ext_resource type="PackedScene" uid="uid://bshkyyfn6knhd" path="res://Scenes/player_ui.tscn" id="4_7j8fy"]
+[ext_resource type="PackedScene" uid="uid://bjxyci4gifbyb" path="res://Scenes/player.tscn" id="5_m555j"]
+[ext_resource type="PackedScene" uid="uid://c36uj83ykhemk" path="res://Scenes/key_pickup.tscn" id="6_tvwtd"]
+[ext_resource type="PackedScene" uid="uid://c164b6qb8ruft" path="res://Scenes/health_pickup.tscn" id="7_2iupg"]
+[ext_resource type="PackedScene" uid="uid://dw2uifivxvwk3" path="res://Scenes/extract.tscn" id="8_kvhk5"]
+[ext_resource type="AudioStream" uid="uid://vhniq3lw33e8" path="res://Assets/Sound/pickup.mp3" id="9_55pcp"]
+[ext_resource type="Script" path="res://Scripts/Entity/spawner_manager.gd" id="10_q851s"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ovm7s"]
 tile_data = PackedInt32Array(0, 1179648, 6, 65536, 1179648, 7, 1, 1245184, 6, 65537, 1245184, 7)
@@ -125,7 +125,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dogae"]
-texture = ExtResource("1_fk5wr")
+texture = ExtResource("1_qqs4y")
 separation = Vector2i(10, 10)
 texture_region_size = Vector2i(64, 64)
 use_texture_padding = false
@@ -1129,7 +1129,7 @@ sources/0 = SubResource("TileSetAtlasSource_dogae")
 pattern_0 = SubResource("TileMapPattern_ovm7s")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lbw67"]
-texture = ExtResource("1_fk5wr")
+texture = ExtResource("1_qqs4y")
 separation = Vector2i(10, 10)
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
@@ -1712,45 +1712,45 @@ z_index = 2
 tile_map_data = PackedByteArray("AADs/wQAAAAYAAQAAAD+/woAAAASABMAAAD//woAAAATABMAAAD0/wUAAAAVAAsAAAD1/wUAAAAUAAsAAADz/wkAAAAUAAsAAADw/wgAAAATAAsAAAA=")
 tile_set = SubResource("TileSet_6lotn")
 
-[node name="ZombieEnemy" parent="." instance=ExtResource("2_dla2r")]
+[node name="ZombieEnemy" parent="." instance=ExtResource("2_fvohh")]
 z_index = 1
 position = Vector2(-285, 563)
 
-[node name="ZombieEnemy2" parent="." instance=ExtResource("2_dla2r")]
+[node name="ZombieEnemy2" parent="." instance=ExtResource("2_fvohh")]
 z_index = 1
 position = Vector2(554, -798)
 
-[node name="AmmoPickup" parent="." instance=ExtResource("3_8kfts")]
+[node name="AmmoPickup" parent="." instance=ExtResource("3_rim48")]
 position = Vector2(313.016, 369.77)
 
-[node name="PlayerUI" parent="." instance=ExtResource("4_nhquy")]
+[node name="PlayerUI" parent="." instance=ExtResource("4_7j8fy")]
 
-[node name="Player" parent="." node_paths=PackedStringArray("player_ui") groups=["player"] instance=ExtResource("5_qh8j4")]
+[node name="Player" parent="." node_paths=PackedStringArray("player_ui") groups=["player"] instance=ExtResource("5_m555j")]
 z_index = 1
 position = Vector2(592, -39)
 collision_mask = 2
 player_ui = NodePath("../PlayerUI")
 
-[node name="KeyPickup" parent="." instance=ExtResource("6_hg144")]
+[node name="KeyPickup" parent="." instance=ExtResource("6_tvwtd")]
 position = Vector2(-60, 356)
 
-[node name="HealthPickup" parent="." instance=ExtResource("7_gx48r")]
+[node name="HealthPickup" parent="." instance=ExtResource("7_2iupg")]
 position = Vector2(318, 437)
 
-[node name="Extract" parent="." instance=ExtResource("8_nykts")]
+[node name="Extract" parent="." instance=ExtResource("8_kvhk5")]
 position = Vector2(1823, 851)
 
-[node name="Extract3" parent="." instance=ExtResource("8_nykts")]
+[node name="Extract3" parent="." instance=ExtResource("8_kvhk5")]
 position = Vector2(1764, -1476)
 
 [node name="PickupStreamPlayer" type="AudioStreamPlayer2D" parent="." groups=["pickup_player"]]
-stream = ExtResource("9_o5cxy")
+stream = ExtResource("9_55pcp")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.411765, 0.411765, 0.411765, 1)
 
 [node name="SpawnerManager" type="Node2D" parent="."]
-script = ExtResource("10_5ylud")
+script = ExtResource("10_q851s")
 
 [node name="InsTimer" type="Timer" parent="SpawnerManager"]
 wait_time = 10.0

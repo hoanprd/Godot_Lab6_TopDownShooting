@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6h5fdsv7nppn"]
+
+[ext_resource type="Script" path="res://Scripts/Entity/player_rigid.gd" id="1_vjcrs"]
+[ext_resource type="Texture2D" uid="uid://chq0cg8eofwd4" path="res://Assets/Player/Player_idle.png" id="2_wmngy"]
+[ext_resource type="Script" path="res://Scripts/Entity/health_system.gd" id="3_ueg7y"]
+[ext_resource type="Script" path="res://Scripts/Entity/shooting_system.gd" id="4_3fv71"]
+[ext_resource type="Texture2D" uid="uid://cdviujlby0sks" path="res://Assets/visibility_mask_1.png" id="7_xqow1"]
+
+[node name="Player" type="RigidBody2D"]
+visibility_layer = 64
+collision_mask = 64
+mass = 2.0
+gravity_scale = 0.0
+script = ExtResource("1_vjcrs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wmngy")
+hframes = 3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-12, 1)
+polygon = PackedVector2Array(-11, -11, -4, -15, -5, -20, 6, -21, 10, -14, 12, -6, 14, -4, 14, 0, 12, 6, 14, 7, 18, 6, 27, 5, 37, 7, 39, 10, 32, 11, 29, 12, 18, 13, 21, 16, 13, 19, -4, 19, -8, 13, -15, 11, -15, -12)
+
+[node name="HealthSystem" type="Node" parent="."]
+script = ExtResource("3_ueg7y")
+
+[node name="ShootingSystem" type="Marker2D" parent="."]
+position = Vector2(26, 9)
+script = ExtResource("4_3fv71")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 2
+position = Vector2(-9, 0)
+blend_mode = 2
+texture = ExtResource("7_xqow1")
+texture_scale = 2.0

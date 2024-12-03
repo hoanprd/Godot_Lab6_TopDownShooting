@@ -2,6 +2,8 @@ extends CanvasLayer
 
 class_name PlayerUI
 
+@onready var bgmBus = AudioServer.get_bus_index("BGM")
+
 @onready var goal_label = $GoalLabel
 @onready var life_bar = $MarginContainer/LifeBar
 @onready var ammo_container = %AmmoContainer
@@ -13,6 +15,8 @@ class_name PlayerUI
 
 var bullet_texture = preload("res://Assets/bullet_icon.png")
 
+func _ready():
+	AudioServer.set_bus_mute(bgmBus, false)
 
 func set_life_bar_max_value(max_value: int):
 	life_bar.max_value = max_value
@@ -60,6 +64,7 @@ func hide_extract_countdown():
 	extract_counter_label.hide()
 
 func on_game_over(is_game_lost: bool):
+	AudioServer.set_bus_mute(bgmBus, true)
 	if is_game_lost:
 		game_over_label.text = "YOU HAVE DIED!!!"
 	game_over_container.show()

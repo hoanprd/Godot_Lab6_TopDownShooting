@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+@onready var fxBus = AudioServer.get_bus_index("FX")
+
 @onready var health_system = $HealthSystem as HealthSystem
 @onready var shooting_system = $ShootingSystem as ShootingSystem
 @onready var shot_stream_player = $Sounds/ShotStreamPlayer
@@ -18,6 +20,7 @@ var angle
 var has_key = false
 
 func _ready():
+	AudioServer.set_bus_mute(fxBus, true)
 	player_ui.set_life_bar_max_value(health_system.base_health)
 	player_ui.set_max_ammo(shooting_system.magazine_size)
 	player_ui.set_ammo_left(shooting_system.max_ammo)
@@ -53,11 +56,12 @@ func take_damage(damage: int):
 	player_ui.update_life_bar_value(health_system.current_health)
 
 func on_shot(ammo_in_magazine: int):
-	
+	AudioServer.set_bus_mute(fxBus, false)
 	shot_stream_player.play()
 	player_ui.bullet_shot(ammo_in_magazine)
 
 func on_reload(ammo_in_magazine: int, ammo_left: int):
+	AudioServer.set_bus_mute(fxBus, false)
 	reload_stream_player.play()
 	player_ui.gun_reloaded(ammo_in_magazine, ammo_left)
 

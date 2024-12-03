@@ -94,7 +94,7 @@ grow_vertical = 2
 [node name="GameOverLabel" type="Label" parent="GameOverContainer/Panel/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "You have extracted :)"
+text = "Successful escape!"
 
 [node name="Play Again Button" type="Button" parent="GameOverContainer/Panel/VBoxContainer"]
 layout_mode = 2
@@ -103,5 +103,6 @@ text = "Play AGAIN"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_kuc64")
 autoplay = true
+bus = &"BGM"
 
 [connection signal="pressed" from="GameOverContainer/Panel/VBoxContainer/Play Again Button" to="." method="_on_play_again_button_pressed"]

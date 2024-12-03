@@ -46,7 +46,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 64
+collision_mask = 72
 script = ExtResource("1_36n2m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -54,6 +54,10 @@ texture = ExtResource("2_5rah5")
 hframes = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1552
+limit_top = -1562
+limit_right = 2067
+limit_bottom = 920
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-12, 1)

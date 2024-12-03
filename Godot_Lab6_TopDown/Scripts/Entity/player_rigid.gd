@@ -9,8 +9,8 @@ class_name Player_Rigid
 
 @onready var move_up = Vector2(0, -5)
 @onready var move_down = Vector2(0, 5)
-@onready var move_right = Vector2(5, 0)
-@onready var move_left = Vector2(-5, 0)
+@onready var move_right = Vector2(100, 0)
+@onready var move_left = Vector2(-100, 0)
 
 @export var damage_per_bullet = 5
 
